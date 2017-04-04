@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class FindMeRestaurantsService {
 
-  constructor(private http: Http, ) { }
+  constructor(private http: Http) { }
 
    getRestaurants(): Promise<RestaurantStore[]> {
     var tmpAry: Array<RestaurantStore> = [];
@@ -25,10 +25,6 @@ export class FindMeRestaurantsService {
       })
       .catch(this.handleError);
       return Promise.resolve (tmpAry);;
-  }
-
-  addRestaurantToFavourite (selectedRestaurant: string) {
-
   }
 
   private handleError(error: any): Promise<any> {

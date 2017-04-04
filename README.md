@@ -5,27 +5,26 @@ This project was generated with [angular-cli](https://github.com/angular/angular
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+## Mock Database looks like the following: 
+{
+  "Rza Dev" : {
+    "Shizen Japanese Restaurant" : "0",
+    "The Mint Restaurant" : "0",
+    "Tim Hortons" : "0",
+    "Willie's Cafe & Bakery" : "0"
+  },
+  "notaza" : {
+    "OLO Restaurant" : "0",
+    "Tim Hortons" : "0"
+  }
+}
 
-## Build
+Each favourite restaurant is stored under the user's Facebook display name. I made the restaurant name the key itself to only have unique restaurant names stored.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Notes about commit: 
+* I did not commit the config keys for Firebase to GitHub for security reasons
+* While developing, I was getting the CORS error when I was requesting restaurant names from the Google/Yelp API so, I ended up storing the GET request in a mock service and using that service for testing. Of course, when the app is deployed the mock service would ideally be replaced by the actual Google/Yelp GET request. 
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to GitHub Pages
-
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## TODO:
+Show a star beside the restaurant that has been marked as user's favourite - will work on this when I have more time...

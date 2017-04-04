@@ -11,7 +11,7 @@ import { RestaurantStore } from '../restaurant-store';
 })
 export class FindRestaurantsComponent implements OnInit {
   selectedRestaurant: string;
-  aryOfRestaurants: RestaurantStore[];
+  public aryOfRestaurants: Array<RestaurantStore> = [];
   items: FirebaseListObservable<any[]>;
   items2: FirebaseListObservable<any[]>;
 
@@ -21,56 +21,27 @@ export class FindRestaurantsComponent implements OnInit {
   ngOnInit() {
     this.findMeRestaurantsService.getRestaurants()
       .then (passedRest => this.aryOfRestaurants = passedRest);
-    
-    
   }
 
   isRestaurantInFavourites(restaurantName: string) : boolean {
     if (this.appComponent.name) {
-    this.items2 = this.af.database.list('/'+this.appComponent.name.facebook.displayName, { preserveSnapshot: true });
-    this.items2
-      .subscribe(snapshots => {
-        snapshots.forEach(snapshot => {
-          if (snapshot.key === restaurantName) {
-            console.log(restaurantName)
-            return true;
-          } 
-        });
-      })
+      var ref = this.af.database.list('/'+this.appComponent.name.facebook.displayName).$ref;
+      ref.once("value")
+      .then(function(snapshot) {
+        console.log(snapshot.child(restaurantName).exists());         
+        return snapshot.child(restaurantName).exists();
+      });
+    } else {
+      return false;
     }
-
-    return false;
   }
 
   onSelect(selectedRestaurant: string): void {
     this.selectedRestaurant = selectedRestaurant;
-    this.findMeRestaurantsService.addRestaurantToFavourite (selectedRestaurant);
-
     // setting the key as the restaurant's name to only store unique restaurant names
     if (this.appComponent.name) {
       this.items = this.af.database.list('/'+this.appComponent.name.facebook.displayName);
       this.items.$ref.ref.child(selectedRestaurant).set("0")
     }
-
-    
-
-
-    // if (this.appComponent.name) {
-    // this.items2 = this.af.database.list('/'+this.appComponent.name.facebook.displayName, { preserveSnapshot: true });
-    // this.items2
-    //   .subscribe(snapshots => {
-    //     snapshots.forEach(snapshot => {
-    //       if (snapshot.key === selectedRestaurant) {
-    //         console.log(selectedRestaurant)
-    //         // return true;
-    //       } 
-    //     });
-    //   })
-    // }
   }
-
-
-
-  
-
 }

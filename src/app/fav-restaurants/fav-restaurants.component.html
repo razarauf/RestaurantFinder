@@ -2,7 +2,7 @@
 <ul class="restaurants">
   <li *ngFor="let restaurant of items | async"
     [class.selected]="restaurant === selectedRestaurant">
-    <span class="badge">**</span>
+    <span class="badge">*</span>
     <span>{{restaurant.$key}}</span> 
     <button class="delete"
     (click)="delete(restaurant.$key); $event.stopPropagation()">x</button>
