@@ -11,6 +11,14 @@ import { FindMeRestaurantsService } from './find-me-restaurants.service'
 
 import { AppRoutingModule }     from './app-routing.module';
 
+import { AngularFireModule } from 'angularfire2';
+
+// Initialize Firebase
+  var config = {
+    
+  };
+  
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +29,8 @@ import { AppRoutingModule }     from './app-routing.module';
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(config)
   ],
   providers: [FindMeRestaurantsService],
   bootstrap: [AppComponent]

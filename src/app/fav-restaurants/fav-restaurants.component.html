@@ -1,3 +1,10 @@
-<p>
-  fav-restaurants works!
-</p>
+<h2>Available restaurants</h2>
+<ul class="restaurants">
+  <li *ngFor="let restaurant of items | async"
+    [class.selected]="restaurant === selectedRestaurant">
+    <span class="badge">**</span>
+    <span>{{restaurant.$key}}</span> 
+    <button class="delete"
+    (click)="delete(restaurant.$key); $event.stopPropagation()">x</button>
+  </li>
+</ul>

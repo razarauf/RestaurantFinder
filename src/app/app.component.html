@@ -1,4 +1,8 @@
+<button (click)="login()" *ngIf="!name">Login</button>
+<button (click)="logout()" *ngIf="name">Logout</button>
+
 <nav>
   <a routerLink="/restaurants" routerLinkActive="active">Dashboard</a>
+  <a routerLink="/myfavourites" routerLinkActive="active">My Favourites</a>  
 </nav>
 <router-outlet></router-outlet>
