@@ -17,8 +17,8 @@ export class FavRestaurantsComponent implements OnInit {
     if (appComponent.name) {
       // console.log(appComponent.name.facebook.displayName)
       this.items = af.database.list('/'+appComponent.name.facebook.displayName);
+      // console.log(appComponent.name.facebook.displayName);
     }
-    console.log ();
   }
 
   delete (keyToDelete: string){

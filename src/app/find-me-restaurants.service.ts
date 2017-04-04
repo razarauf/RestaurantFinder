@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 
+
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class FindMeRestaurantsService {
 
-  constructor(private http: Http) { }
+  constructor(private http: Http, ) { }
 
    getRestaurants(): Promise<string[]> {
     var tmpAry: Array<String> = [];
@@ -24,6 +25,10 @@ export class FindMeRestaurantsService {
       })
       .catch(this.handleError);
       return Promise.resolve (tmpAry);;
+  }
+
+  addRestaurantToFavourite (selectedRestaurant: string) {
+
   }
 
   private handleError(error: any): Promise<any> {

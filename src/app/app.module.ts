@@ -16,7 +16,7 @@ import { AngularFireModule } from 'angularfire2';
 // Initialize Firebase
   var config = {
     
-  };
+  }; 
   
 
 @NgModule({

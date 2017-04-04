@@ -3,6 +3,7 @@
   <li *ngFor="let restaurant of aryOfRestaurants"
     [class.selected]="restaurant === selectedRestaurant"
     (click)="onSelect(restaurant)">
-    <span class="badge">*</span> {{restaurant}}
+    <span class="badge">*</span>
+    <span>{{restaurant}}</span>
   </li>
 </ul>
