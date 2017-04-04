@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-
+import { RestaurantStore } from './restaurant-store';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -10,8 +10,8 @@ export class FindMeRestaurantsService {
 
   constructor(private http: Http, ) { }
 
-   getRestaurants(): Promise<string[]> {
-    var tmpAry: Array<String> = [];
+   getRestaurants(): Promise<RestaurantStore[]> {
+    var tmpAry: Array<RestaurantStore> = [];
     this.http.get('http://www.mocky.io/v2/58dae7d20f00000113d66c72')
       .toPromise()
       .then(function (response) {
@@ -19,7 +19,7 @@ export class FindMeRestaurantsService {
           let obj = JSON.parse(JSON.stringify(response.json()));
           for (let eachElement of obj.results)
           {
-              tmpAry.push(String(eachElement.name));
+              tmpAry.push(new RestaurantStore(false, String(eachElement.name)));
           }
           
       })

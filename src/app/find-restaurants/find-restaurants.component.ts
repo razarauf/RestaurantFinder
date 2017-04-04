@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FindMeRestaurantsService } from '../find-me-restaurants.service';
 import {AngularFire, AuthProviders, AuthMethods, FirebaseListObservable } from 'angularfire2'
 import { AppComponent } from '../app.component';
+import { RestaurantStore } from '../restaurant-store';
 
 @Component({
   selector: 'app-find-restaurants',
@@ -10,7 +11,7 @@ import { AppComponent } from '../app.component';
 })
 export class FindRestaurantsComponent implements OnInit {
   selectedRestaurant: string;
-  aryOfRestaurants: string[];
+  aryOfRestaurants: RestaurantStore[];
   items: FirebaseListObservable<any[]>;
   items2: FirebaseListObservable<any[]>;
 
